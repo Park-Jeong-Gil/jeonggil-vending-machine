@@ -1,0 +1,189 @@
+@use 'sass:math';
+@use 'sass:list';
+@use 'sass:meta';
+@use './variables' as *;
+
+@function movw($px) {
+  $width: $mo_min;
+  $w: math.div(1, math.div($width, 1px)) * 100;
+  $vws: null;
+  $max-width: $mo_max;
+  $topx: $px * math.div($max-width, $width);
+
+  @each $v in $px {
+    @if meta.type-of($v) == 'number' {
+      $px: math.div($v, 1px);
+      $vw: $px * $w;
+      $vws: list.append($vws, if($vw == 0, 0, $vw + vw));
+    } @else {
+      $vws: list.append($vws, $v);
+    }
+  }
+
+  @return min(#{$vws}, #{$topx}px);
+}
+
+@function pcvw($px) {
+  $width: $pc_max;
+  $w: math.div(1, math.div($width, 1px)) * 100;
+  $vws: null;
+  $max-width: $pc_max;
+  $topx: $px * math.div($max-width, $width);
+
+  @each $v in $px {
+    @if meta.type-of($v) == 'number' {
+      $px: math.div($v, 1px);
+      $vw: $px * $w;
+      $vws: list.append($vws, if($vw == 0, 0, $vw + vw));
+    } @else {
+      $vws: list.append($vws, $v);
+    }
+  }
+
+  @return min(#{$vws}, #{$topx}px);
+}
+
+////
+/// Helper function to easily use an SVG inline in CSS
+/// without encoding it to base64, saving bytes.
+/// It also helps with browser support.
+////
+
+/// A small function allowing skipping base64 encoding
+/// and simply pasting the SVG markup right in the CSS.
+/// @author Jakob Eriksen
+/// @link http://codepen.io/jakob-e/pen/doMoML
+/// @param {String} $svg - SVG image to encode
+/// @return {String} - Encoded SVG data uri
+@function svg-uri($svg) {
+  $encoded: '';
+  $slice: 2000;
+  $index: 0;
+  $loops: ceil(math.div(str-length($svg), $slice));
+
+  @for $i from 1 through $loops {
+    $chunk: str-slice($svg, $index, $index + $slice - 1);
+    $chunk: str-replace($chunk, '"', "'");
+    $chunk: str-replace($chunk, '<', '%3C');
+    $chunk: str-replace($chunk, '>', '%3E');
+    $chunk: str-replace($chunk, '&', '%26');
+    $chunk: str-replace($chunk, '#', '%23');
+    $encoded: #{$encoded}#{$chunk};
+    $index: $index + $slice;
+  }
+
+  @return url('data:image/svg+xml;charset=utf8,#{$encoded}');
+}
+
+/// Replace `$search` with `$replace` in `$string`
+/// @author Hugo Giraudel
+/// @link http://sassmeister.com/gist/1b4f2da5527830088e4d
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+  }
+
+  @return $string;
+}
+
+@mixin parent-selector($parent, $value) {
+  @at-root #{selector-replace(&, $parent, $parent+$value)} {
+    @content;
+  }
+}
+
+@function str-to-list($string, $separator: ' ', $startAt: 1) {
+  $workStr: str-slice($string, $startAt);
+  $list: ();
+  $indexOfFirstSpace: str-index($workStr, $separator);
+  @if $indexOfFirstSpace==null {
+    $list: ($workStr);
+  } @else {
+    $list: (str-slice($workStr, 1, $indexOfFirstSpace - 1));
+    $list: join($list, str-to-list($workStr, $startAt: $indexOfFirstSpace + 1));
+  }
+  @return $list;
+}
+
+@function parent-append($appendix, $parent, $at-start) {
+  $parentSelector: str-to-list(#{&});
+  $length: length($parentSelector);
+  @if $parent >=$length or $parent < 0 {
+    @error "Index '#{$parent}' is out of range";
+  }
+  $pos: $length - $parent;
+  @if $at-start == false {
+    $selector: set-nth(
+      $parentSelector,
+      $pos,
+      nth($parentSelector, $pos) + $appendix
+    );
+    @return $selector;
+  }
+  @if $at-start == true {
+    $selector: set-nth(
+      $parentSelector,
+      $pos,
+      $appendix + nth($parentSelector, $pos)
+    );
+    @return $selector;
+  }
+}
+
+/// Append defined string to parent selector
+/// @require {function} parent-append
+/// @param {String} $appendix - selector that we want append to parent
+/// @param {Number} $parent [1] - index of parent selector
+/// @param {Boolean} $at-start [false] - append to start of parent selector
+/// // Usage
+// .ancestor {
+//   display: inline-flex;
+
+//   .grandparent {
+//     padding: 32px;
+//     background-color: lightgreen;
+
+//     .parent {
+//       padding: 32px;
+//       background-color: blue;
+
+//       .elem {
+//         padding: 16px;
+//         background-color: white;
+
+//         @include parent-append(":focus", 3) {
+//           box-shadow: inset 0 0 0 8px aqua;
+//         }
+
+//         @include parent-append(":hover") {
+//           background-color: fuchsia;
+//         }
+
+//         @include parent-append("p", 0, true) {
+//           background-color: green;
+//         }
+//       }
+//     }
+//   }
+// }
+/// @result
+/// .ancestor:focus .grandparent .parent .elem {box-shadow: inset 0 0 0 8px aqua;}
+/// .ancestor .grandparent .parent:hover .elem {background-color: fuchsia;}
+/// .ancestor .grandparent .parent p.elem {background-color: green;}
+///
+@mixin parent-append($appendix, $parent: 1, $at-start: false) {
+  @at-root #{parent-append($appendix, $parent, $at-start)} {
+    @content;
+  }
+}

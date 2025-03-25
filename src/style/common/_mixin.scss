@@ -1,0 +1,83 @@
+@use 'sass:math';
+@use './variables' as *;
+
+@mixin mo-over {
+  @media (min-width: ($ta_min * 1px)) {
+    @content;
+  }
+}
+
+@mixin mo {
+  @media (max-width: ($mo_max * 1px)) {
+    @content;
+  }
+}
+
+@mixin tab {
+  @media (min-width: ($ta_min * 1px)) and (max-width: ($ta_max * 1px)) {
+    @content;
+  }
+}
+@mixin tab-over {
+  @media (min-width: ($ta_max * 1px)) {
+    @content;
+  }
+}
+
+@mixin pc {
+  @media (min-width: ($ta_min * 1px)) {
+    @content;
+  }
+}
+
+// @mixin pc {
+//   @media (min-width: ($pc_min * 1px)) {
+//     @content;
+//   }
+// }
+
+@mixin font($name: null, $font-size: 16px, $weight: null, $line-height: null) {
+  @if type-of($name) != null {
+    font-family: $name, sans-serif;
+  }
+  font-size: $font-size;
+  line-height: 150%;
+  @if type-of($weight) != null {
+    font-weight: $weight;
+  }
+}
+
+@mixin clearfix {
+  &::after {
+    display: block;
+    clear: both;
+    content: '';
+  }
+}
+
+/* place holder */
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+@mixin blind {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  font-size: 1px;
+  color: transparent;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}

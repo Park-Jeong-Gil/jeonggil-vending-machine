@@ -8,6 +8,7 @@ const projectName = 'vending-machine';
 export default defineConfig({
   resolve: {
     alias: {
+      '@': resolve(__dirname, 'src'),
       '@images': resolve(__dirname, 'public', 'resources', 'images'),
     },
   },
