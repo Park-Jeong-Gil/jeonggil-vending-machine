@@ -1,17 +1,25 @@
-interface WalletItemsProps {
-  id: number;
-  name: string;
-  price: number;
-  stock: number;
+import { Money } from '@/types';
+
+interface WalletItemsProps extends Money {
+  onSelect: () => void;
+  disabled: boolean;
 }
 
-export default function WalletItems(money: WalletItemsProps) {
+export default function WalletItems({
+  price,
+  stock,
+  onSelect,
+  disabled,
+}: WalletItemsProps) {
   return (
     <li>
-      <button className={`wallet-item price-${money.price}won`}>
+      <button
+        className={`wallet-item price-${price}won`}
+        onClick={onSelect}
+        disabled={disabled}>
         <strong className="wallet-item-text">
-          {money.name}
-          <span className="wallet-item-stock"> X {money.stock}</span>
+          <span>{price.toLocaleString()}원</span>
+          <span className="stock"> X {stock}</span>
         </strong>
       </button>
     </li>

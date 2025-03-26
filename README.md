@@ -1,54 +1,64 @@
-# React + TypeScript + Vite
+# 자판기 시뮬레이터 (Vending Machine Simulator)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ProtoPie - Frontend 사전 과제, 현금과 카드 결제가 가능한 자판기 웹 시뮬레이터 입니다.
 
-Currently, two official plugins are available:
+## 주요 내용
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 픽셀 디자인으로 컨셉 구축
+- 현금/카드 결제 구현
+- 실시간 잔액 표시
+- 음료 재고 상태 관리
+- 거스름돈 반환
+- 음료 배출 애니메이션
 
-## Expanding the ESLint configuration
+## 기술 스택
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Vite 5
+- React 18
+- TypeScript 5
+- Recoil 
+- SCSS 
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 시작하기
+
+### 실행 조건
+
+- Node.js 18.0.0 이상
+- npm 9.0.0 이상
+
+### 설치
+
+```bash
+# 저장소 클론
+git clone [repository-url]
+
+# 프로젝트 디렉토리로 이동
+cd jeonggil-vending-machine
+
+# 의존성 설치
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 개발 서버 실행
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm run dev
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### 프로덕션 빌드
+
+```bash
+npm run build
+```
+
+## 프로젝트 구조
+
+```
+src/
+├── components/         # 리액트 컴포넌트
+├── recoil/            # Recoil 상태 관리
+├── types/             # TypeScript 타입 정의
+├── db/                # 더미 데이터 (JSON)
+├── style/             # SCSS 스타일
+└── assets/            # 이미지 등 정적 파일
 ```

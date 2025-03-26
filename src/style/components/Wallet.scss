@@ -77,6 +77,12 @@
     transform: translateY(vw(2));
   }
 
+  &:disabled {
+    opacity: 0.4;
+    cursor: url('@/assets/images/cursor_default.png'), pointer !important;
+    background: none;
+  }
+
   &:before {
     content: '';
     display: block;
