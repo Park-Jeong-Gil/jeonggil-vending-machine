@@ -28,5 +28,5 @@ export const PAYMENT_STATUS = {
   CASH: '현금 결제',
   CARD: '카드 결제',
   DISPENSING: '배출 중...',
-  COMPLETED: '제품을 꺼내 주세요.',
+  COMPLETED: '음료를 꺼내 주세요.',
 } as const;
