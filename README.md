@@ -2,6 +2,8 @@
 
 ProtoPie - Frontend 사전 과제, 현금과 카드 결제가 가능한 자판기 웹 시뮬레이터 입니다.
 
+[메카니즘 도식 문서 및 사전 과제 후기](https://girgir.notion.site/1c1ec283ac8680e59b6bc7b93e3322ae)
+
 <img src="public/preview-image.png" alt="자판기 시뮬레이터 미리보기" width="400"/>
 
 ## 주요 내용
@@ -65,4 +67,3 @@ src/
 └── assets/            # 이미지 등 정적 파일
 ```
 
-[메카니즘 도식 문서 및 사전 과제 후기](https://girgir.notion.site/1c1ec283ac8680e59b6bc7b93e3322ae)
