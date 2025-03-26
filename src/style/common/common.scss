@@ -1,6 +1,7 @@
-@use './reset' as *;
-@use './variables' as *;
-@use './mixin' as *;
-@use './functions' as *;
+@use './mixin.scss' as *;
 
 @import url('https://fastly.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+
+.blind {
+  @include blind;
+}

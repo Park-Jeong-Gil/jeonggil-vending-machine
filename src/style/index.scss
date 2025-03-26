@@ -1,0 +1,57 @@
+@use './common/common' as *;
+@use './common/reset' as *;
+@use './common/variables' as *;
+@use './common/mixin' as *;
+@use './common/functions' as *;
+
+body {
+  font-family: 'Galmuri11', sans-serif;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100dvh;
+  background-color: #a1c2ff;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  cursor: url('@/assets/images/cursor_default.png'), default;
+
+  a,
+  button {
+    &:hover {
+      cursor: url('@/assets/images/cursor_select.png'), pointer;
+    }
+  }
+
+  header,
+  main,
+  footer {
+    max-width: $mo_max + px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 vw(16);
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header,
+  footer {
+    font-size: vw(14);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: vw(30);
+    flex-shrink: 0;
+  }
+  footer {
+    margin-top: vw(10);
+    font-size: vw(8);
+  }
+}

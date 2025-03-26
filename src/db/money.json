@@ -1,27 +1,32 @@
 [
   {
+    "id": 1,
     "name": "100원",
     "price": 100,
-    "stock": 10
+    "stock": 5
   },
   {
+    "id": 2,
     "name": "500원",
     "price": 500,
-    "stock": 10
+    "stock": 5
   },
   {
+    "id": 3,
     "name": "1,000원",
     "price": 1000,
-    "stock": 10
+    "stock": 5
   },
   {
+    "id": 4,
     "name": "5,000원",
     "price": 5000,
-    "stock": 10
+    "stock": 5
   },
   {
+    "id": 5,
     "name": "10,000원",
     "price": 10000,
-    "stock": 10
+    "stock": 5
   }
 ]

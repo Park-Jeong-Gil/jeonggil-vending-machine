@@ -1,61 +1,73 @@
 [
   {
-    "name": "coke1",
+    "id": 1,
+    "name": "coke",
     "price": 1100,
     "stock": 10
   },
   {
-    "name": "coke2",
+    "id": 2,
+    "name": "coke",
     "price": 1100,
     "stock": 10
   },
   {
-    "name": "coke3",
+    "id": 3,
+    "name": "coke",
     "price": 1100,
     "stock": 0
   },
   {
-    "name": "coke4",
+    "id": 4,
+    "name": "coke",
     "price": 1100,
     "stock": 0
   },
   {
-    "name": "water1",
+    "id": 5,
+    "name": "water",
     "price": 600,
     "stock": 1
   },
   {
-    "name": "water2",
+    "id": 6,
+    "name": "water",
     "price": 600,
     "stock": 3
   },
   {
-    "name": "water3",
+    "id": 7,
+    "name": "water",
     "price": 600,
     "stock": 5
   },
   {
-    "name": "water4",
+    "id": 8,
+    "name": "water",
     "price": 600,
     "stock": 1
   },
   {
-    "name": "coffee1",
+    "id": 9,
+    "name": "coffee",
     "price": 700,
     "stock": 1
   },
   {
-    "name": "coffee2",
+    "id": 10,
+    "name": "coffee",
     "price": 700,
     "stock": 2
   },
   {
-    "name": "coffee3",
+    "id": 11,
+    "name": "coffee",
     "price": 700,
     "stock": 2
   },
   {
-    "name": "coffee4",
+    "id": 12,
+    "name": "coffee",
     "price": 700,
     "stock": 2
   }

@@ -1,0 +1,139 @@
+@use '../common/variables' as *;
+@use '../common/functions' as *;
+@use '../common/pixel-borders' as *;
+
+.wallet-container {
+  width: 100%;
+  height: vw(120);
+  padding: vw(10);
+  background-color: #fff;
+  margin-top: vw(10);
+
+  @include pixel-borders(
+    $corner-size: 2,
+    $border-size: 5px,
+    $border-color: #000
+  );
+
+  @media (max-width: ($mo_max * 1px)) {
+    @include pixel-borders(
+      $corner-size: 2,
+      $border-size: 3px,
+      $border-color: #000
+    );
+  }
+}
+
+.wallet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: vw(12);
+  }
+  strong {
+    font-size: vw(10);
+  }
+}
+
+.wallet-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  max-height: vw(68);
+  margin-top: vw(5);
+  gap: vw(5);
+
+  li {
+    flex-shrink: 0;
+    height: 100%;
+  }
+}
+
+.wallet-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: vw(46);
+  height: 100%;
+  padding: vw(3);
+  border-radius: vw(4);
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+
+  cursor: url('@/assets/images/cursor_put.png'), pointer !important;
+
+  &:hover {
+    background-color: #ecf2ff;
+  }
+
+  &:active {
+    transform: translateY(vw(2));
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    width: vw(30);
+    height: vw(30);
+    margin: auto 0;
+  }
+
+  &.credit-card {
+    &:before {
+      width: vw(30);
+      height: vw(30);
+      background: url('@/assets/images/creditcard.png') no-repeat center
+        center / contain;
+    }
+  }
+
+  &.price-100won {
+    &:before {
+      width: vw(10);
+      height: vw(10);
+      background: url('@/assets/images/100.png') no-repeat center center /
+        contain;
+    }
+  }
+
+  &.price-500won {
+    &:before {
+      width: vw(12);
+      height: vw(12);
+      background: url('@/assets/images/500.png') no-repeat center center /
+        contain;
+    }
+  }
+
+  &.price-1000won {
+    &:before {
+      background: url('@/assets/images/1000.png') no-repeat center center /
+        contain;
+    }
+  }
+
+  &.price-5000won {
+    &:before {
+      background: url('@/assets/images/5000.png') no-repeat center center /
+        contain;
+    }
+  }
+
+  &.price-10000won {
+    &:before {
+      background: url('@/assets/images/10000.png') no-repeat center center /
+        contain;
+    }
+  }
+}
+
+.wallet-item-text {
+  font-size: vw(6);
+}

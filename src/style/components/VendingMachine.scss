@@ -1,0 +1,210 @@
+@use '../common/variables' as *;
+@use '../common/functions' as *;
+@use '../common/pixel-borders' as *;
+
+.vending-machine-container {
+  position: relative;
+  margin-top: vw(10);
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .vending-machine-body {
+    position: relative;
+    z-index: 2;
+    width: vw(250);
+    height: vw(328);
+    background: url('@/assets/images/body.png') no-repeat center center /
+      contain;
+  }
+
+  .drink-menu-container {
+    position: absolute;
+    z-index: 3;
+    top: vw(11);
+    left: vw(12);
+    width: vw(182);
+    height: vw(150);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.drink {
+  &-content {
+    position: relative;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    &:before {
+      content: '';
+      // position: absolute;
+      display: block;
+      width: vw(15);
+      height: vw(30);
+      background: url('@/assets/images/coke.png') no-repeat center center /
+        contain;
+    }
+
+    &.coke {
+      &:before {
+        background: url('@/assets/images/coke.png') no-repeat center center /
+          contain;
+      }
+    }
+
+    &.water {
+      &:before {
+        background: url('@/assets/images/water.png') no-repeat center center /
+          contain;
+      }
+    }
+
+    &.coffee {
+      &:before {
+        background: url('@/assets/images/coffee.png') no-repeat center center /
+          contain;
+      }
+    }
+  }
+
+  &-price {
+    position: relative;
+    z-index: 1;
+    font-size: vw(6);
+    font-weight: 600;
+    background-color: #f7d51d;
+    padding: vw(1) vw(2);
+    position: absolute;
+    bottom: vw(18);
+    left: 50%;
+    transform: translateX(-50%);
+    text-wrap: nowrap;
+  }
+
+  &-button {
+    display: inline-block;
+    width: vw(38);
+    font-size: vw(7);
+    font-weight: 600;
+    background-color: #000;
+    padding: vw(1) vw(4);
+    text-align: center;
+    text-wrap: nowrap;
+    border-radius: 0;
+
+    span {
+      display: inline-block;
+      color: #5b2c2c;
+      transition: transform 0.12s ease-in-out;
+    }
+
+    &:active {
+      span {
+        transform: scale(0.9);
+      }
+    }
+
+    &.active {
+      span {
+        color: #e13939;
+      }
+    }
+
+    @include pixel-borders(
+      $corner-size: 1,
+      $border-size: 2px,
+      $border-color: #000
+    );
+
+    @media (max-width: ($mo_max * 1px)) {
+      @include pixel-borders(
+        $corner-size: 2,
+        $border-size: 1px,
+        $border-color: #000
+      );
+    }
+  }
+}
+
+.digital-screen {
+  position: absolute;
+  top: vw(170);
+  left: vw(14);
+  width: vw(88);
+  height: vw(46);
+  padding: vw(6);
+  z-index: 3;
+  // background-color: red;
+  span {
+    display: block;
+    width: 100%;
+    font-size: vw(8);
+    font-weight: 400;
+  }
+}
+
+.exchange-btn {
+  position: absolute;
+  top: vw(176);
+  left: vw(147);
+  width: vw(18);
+  height: vw(18);
+  background: url('@/assets/images/exchange_btn.png') no-repeat center center /
+    contain;
+  z-index: 3;
+  transition: transform 0.3s ease-in-out;
+  &:active {
+    transform: rotate(180deg);
+  }
+}
+
+.out-container {
+  position: absolute;
+  bottom: vw(31);
+  left: vw(34);
+  width: vw(119);
+  height: vw(34);
+  background-color: #000;
+  overflow: hidden;
+
+  cursor: url('@/assets/images/cursor_grab.png'), pointer;
+
+  &:hover,
+  &:active {
+    .cover {
+      transform: translateY(-60%);
+    }
+  }
+
+  .cover {
+    position: relative;
+    top: -1px;
+    left: 1px;
+    z-index: 0;
+    display: block;
+    width: vw(117);
+    height: vw(24);
+    margin: auto 0;
+    background: url('@/assets/images/cover.jpg') no-repeat center center /
+      contain;
+    opacity: 0.9;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .item {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    width: vw(15);
+    height: vw(30);
+    background-color: red;
+  }
+}

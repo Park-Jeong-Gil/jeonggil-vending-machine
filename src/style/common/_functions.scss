@@ -3,7 +3,7 @@
 @use 'sass:meta';
 @use './variables' as *;
 
-@function movw($px) {
+@function vw($px) {
   $width: $mo_min;
   $w: math.div(1, math.div($width, 1px)) * 100;
   $vws: null;
@@ -23,25 +23,25 @@
   @return min(#{$vws}, #{$topx}px);
 }
 
-@function pcvw($px) {
-  $width: $pc_max;
-  $w: math.div(1, math.div($width, 1px)) * 100;
-  $vws: null;
-  $max-width: $pc_max;
-  $topx: $px * math.div($max-width, $width);
+// @function pcvw($px) {
+//   $width: $pc_max;
+//   $w: math.div(1, math.div($width, 1px)) * 100;
+//   $vws: null;
+//   $max-width: $pc_max;
+//   $topx: $px * math.div($max-width, $width);
 
-  @each $v in $px {
-    @if meta.type-of($v) == 'number' {
-      $px: math.div($v, 1px);
-      $vw: $px * $w;
-      $vws: list.append($vws, if($vw == 0, 0, $vw + vw));
-    } @else {
-      $vws: list.append($vws, $v);
-    }
-  }
+//   @each $v in $px {
+//     @if meta.type-of($v) == 'number' {
+//       $px: math.div($v, 1px);
+//       $vw: $px * $w;
+//       $vws: list.append($vws, if($vw == 0, 0, $vw + vw));
+//     } @else {
+//       $vws: list.append($vws, $v);
+//     }
+//   }
 
-  @return min(#{$vws}, #{$topx}px);
-}
+//   @return min(#{$vws}, #{$topx}px);
+// }
 
 ////
 /// Helper function to easily use an SVG inline in CSS

@@ -1,3 +1,5 @@
+@use './pixel-borders-mixins' as *;
+
 // ----- Border styles -----
 .pixel-borders {
   position: relative;
@@ -5,9 +7,13 @@
   margin: 0 15px 15px 0;
   padding: 15px 20px;
   background-color: #fff;
-  font-family: "Press Start 2P", Arial Black, Arial Bold, Arial, sans-serif;
+  font-family:
+    'Press Start 2P',
+    Arial Black,
+    Arial Bold,
+    Arial,
+    sans-serif;
 }
-
 
 // One pixel borders
 .pixel-borders--1 {
@@ -18,76 +24,118 @@
   @include pixel-borders($border-inset-color: #ddd);
 }
 
-
 // Two pixel borders
 .pixel-borders--2 {
   @include pixel-borders($corner-size: 2);
 }
 
 .pixel-borders--2-inset {
+  position: relative;
   @include pixel-borders($corner-size: 2);
 
   &::after {
-    @include pixel-borders($corner-size: 1, $border-color: #ddd);
-
     content: '';
     position: absolute;
     z-index: 0;
     bottom: 0;
     right: 0;
-    border-image-width: 0 1 1 0;
     width: calc(100% - 4px);
     height: calc(100% - 4px);
+    border-image-width: 0 1 1 0;
+    @include pixel-borders($corner-size: 1, $border-color: #ddd);
   }
 }
 
-
-
 // Examples using the pixel box mixin to colour code the elements
 .pixel-box--light {
-  @include pixel-box($corner-size: 1, $border-size: 4px, $background-color: #fff);
+  @include pixel-box(
+    $corner-size: 1,
+    $border-size: 4px,
+    $background-color: #fff
+  );
 }
 
 .pixel-box--primary {
   color: #fff;
-  @include pixel-box($corner-size: 1, $border-size: 4px, $background-color: #209cee);
+  @include pixel-box(
+    $corner-size: 1,
+    $border-size: 4px,
+    $background-color: #209cee
+  );
 }
 
 .pixel-box--success {
   color: #fff;
-  @include pixel-box($corner-size: 1, $border-size: 4px, $background-color: #92cc41);
-} 
+  @include pixel-box(
+    $corner-size: 1,
+    $border-size: 4px,
+    $background-color: #92cc41
+  );
+}
 
 .pixel-box--warning {
-  @include pixel-box($corner-size: 1, $border-size: 4px, $background-color: #f7d51d);
-} 
+  @include pixel-box(
+    $corner-size: 1,
+    $border-size: 4px,
+    $background-color: #f7d51d
+  );
+}
 
 .pixel-box--error {
   color: #fff;
-  @include pixel-box($corner-size: 1, $border-size: 4px, $background-color: #e76e55);
-} 
-
+  @include pixel-box(
+    $corner-size: 1,
+    $border-size: 4px,
+    $background-color: #e76e55
+  );
+}
 
 // Custom examples to show flexibility of the mixins
 .pixel-box--light-custom {
-  @include pixel-box($corner-size: 1, $border-size: 4px, $background-color: #fff, $border-inset-color: #999, $border-inset-sides: 'all');
+  @include pixel-box(
+    $corner-size: 1,
+    $border-size: 4px,
+    $background-color: #fff,
+    $border-inset-color: #999,
+    $border-inset-sides: 'all'
+  );
 }
 
 .pixel-box--primary-custom {
   color: #fff;
-  @include pixel-box($corner-size: 1, $border-size: 4px, $background-color: #209cee, $border-inset: false);
+  @include pixel-box(
+    $corner-size: 1,
+    $border-size: 4px,
+    $background-color: #209cee,
+    $border-inset: false
+  );
 }
 
 .pixel-box--success-custom {
   color: #fff;
-  @include pixel-box($corner-size: 1, $border-size: 4px, $background-color: #92cc41, $border-inset-sides: 'top-left');
-} 
+  @include pixel-box(
+    $corner-size: 1,
+    $border-size: 4px,
+    $background-color: #92cc41,
+    $border-inset-sides: 'top-left'
+  );
+}
 
 .pixel-box--warning-custom {
-  @include pixel-box($corner-size: 1, $border-size: 4px, $background-color: #f7d51d, $border-inset-sides: 'all');
-} 
+  @include pixel-box(
+    $corner-size: 1,
+    $border-size: 4px,
+    $background-color: #f7d51d,
+    $border-inset-sides: 'all'
+  );
+}
 
 .pixel-box--error-custom {
   color: #fff;
-  @include pixel-box($corner-size: 1, $border-size: 4px, $background-color: #e76e55, $border-color: #000);
-} 
+  @include pixel-box(
+    $corner-size: 1,
+    $border-size: 4px,
+    $background-color: #e76e55,
+    $border-color: #000
+  );
+}
