@@ -2,13 +2,15 @@
 
 ProtoPie - Frontend 사전 과제, 현금과 카드 결제가 가능한 자판기 웹 시뮬레이터 입니다.
 
+<img src="preview-image.png" alt="자판기 시뮬레이터 미리보기" width="400"/>
+
 ## 주요 내용
 
 - 픽셀 디자인으로 컨셉 구축
 - 현금/카드 결제 구현
-- 실시간 잔액 표시
-- 음료 재고 상태 관리
-- 거스름돈 반환
+- 자판기, 지갑에서 실시간 잔액 표시
+- 음료의 재고 상태 관리
+- 거스름 돈 반환 구현
 - 음료 배출 애니메이션
 
 ## 기술 스택
@@ -30,7 +32,7 @@ ProtoPie - Frontend 사전 과제, 현금과 카드 결제가 가능한 자판�
 
 ```bash
 # 저장소 클론
-git clone [repository-url]
+git clone https://github.com/Park-Jeong-Gil/jeonggil-vending-machine.git
 
 # 프로젝트 디렉토리로 이동
 cd jeonggil-vending-machine
